@@ -13,13 +13,22 @@ namespace WeatherServerLibrary
     /// </summary>
     public class WeatherServer : Server
     {
-
+        /// <summary>
+        /// Klucz api jest nieaktualny. Jeśli chcesz użyć tej implementacji, wygeneruj swój klucz na stronie https://openweathermap.org/
+        /// </summary>
         static readonly string apiKey = "a3f16ef88f8535836dffea2213656bf1";
-
         public delegate void delegateGetWeather(NetworkStream stream);
 
+        /// <summary>
+        /// Inicjalizacja serwera
+        /// </summary>
+        /// <param name="IP">Adres IP serwera</param>
+        /// <param name="port">Port serwera</param>
         public WeatherServer(IPAddress IP, int port) : base(IP, port) { }
 
+        /// <summary>
+        /// Funkcja startująca serwer
+        /// </summary>
         public override void Start()
         {
             StartListening();
@@ -27,6 +36,9 @@ namespace WeatherServerLibrary
             AcceptClient();
         }
 
+        /// <summary>
+        /// Akceptacja połączenia z klientem
+        /// </summary>
         protected override void AcceptClient()
         {
             while (true) 
@@ -41,6 +53,10 @@ namespace WeatherServerLibrary
             }
         }
 
+        /// <summary>
+        /// Zakończenie połączenia z klientem
+        /// </summary>
+        /// <param name="er">klient</param>
         private void getWeatherCallback(IAsyncResult er)
         {
             TcpClient tcpClient = (TcpClient)er.AsyncState;
@@ -48,6 +64,10 @@ namespace WeatherServerLibrary
             Console.WriteLine("Połączenie zostało zakończone!");
         }
 
+        /// <summary>
+        /// Funkcja zwracająca pogodę dla klienta
+        /// </summary>
+        /// <param name="stream">stream klienta</param>
         private void getWeather(NetworkStream stream)
         {
             byte[] question = Encoding.UTF8.GetBytes("\r\n(Jeśli chcesz wyjść wpisz exit)" +
