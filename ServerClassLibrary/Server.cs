@@ -13,13 +13,13 @@ namespace WeatherServerLibrary
     public abstract class Server
     {
         #region Fields
-        IPAddress iPAddress;
-        int port;
-        int buffer_size = 1024;
-        bool running;
-        TcpListener tcpListener;
-        TcpClient tcpClient;
-        NetworkStream stream;
+        protected IPAddress iPAddress;
+        protected int port;
+        protected int buffer_size = 1024;
+        protected bool running;
+        protected TcpListener tcpListener;
+        protected TcpClient tcpClient;
+        protected NetworkStream stream;
         #endregion
 
 
@@ -139,11 +139,8 @@ namespace WeatherServerLibrary
         protected void StartListening()
 
         {
-
             TcpListener = new TcpListener(IPAddress, Port);
-
             TcpListener.Start();
-
         }
 
         /// <summary>
@@ -151,12 +148,6 @@ namespace WeatherServerLibrary
         /// </summary>
 
         protected abstract void AcceptClient();
-
-        /// <summary>
-        /// This function implements Echo and transmits the data between server and client.
-        /// </summary>
-
-        protected abstract void BeginDataTransmission(NetworkStream stream);
 
         /// <summary>
         /// This function fires off the default server behaviour. It interrupts the program.

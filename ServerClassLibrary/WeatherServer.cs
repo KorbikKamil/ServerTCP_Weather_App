@@ -10,58 +10,48 @@ namespace WeatherServerLibrary
     /// <summary>
     /// Klasa implementująca działanie serwera
     /// </summary>
-    public class Serwer 
+    public class WeatherServer : Server
     {
-        readonly IPAddress ipAdress;
-        readonly int port;
-        readonly TcpListener listener;
-        readonly TcpClient client;
-        readonly NetworkStream stream;
 
-        static readonly string apiKey = "Your_Api_Key"; //"Your_Api_Key"
+        static readonly string apiKey = "a3f16ef88f8535836dffea2213656bf1";
 
+        public WeatherServer(IPAddress IP, int port) : base(IP, port) { }
 
-        /// <summary>
-        /// Konstruktor klasy Serwer
-        /// </summary>
-        /// <param name="ip">Adress ip serwera</param>
-        /// <param name="p">Port serwera</param>
-        public Serwer(string ip, int p)
+        public override void Start()
         {
-            ipAdress = IPAddress.Parse(ip);
-            port = p;
+            StartListening();
+            //transmission starts within the accept function
+            AcceptClient();
+        }
 
-            listener = new TcpListener(ipAdress, port);
-            listener.Start();
-
-            client = listener.AcceptTcpClient();
-
-            stream = client.GetStream();
-
+        protected override void AcceptClient()
+        {
+            TcpClient = TcpListener.AcceptTcpClient();
+            Stream = TcpClient.GetStream();
             Console.WriteLine("Nastąpiło poprawne połączenie");
             byte[] welcome = Encoding.UTF8.GetBytes("Nastapiło poprawne połączenie\r\n");
-            stream.Write(welcome, 0, welcome.Length);
+            Stream.Write(welcome, 0, welcome.Length);
+            getWeather();
         }
-        /// <summary>
-        /// Funkcja pobierająca dane o pogodzie przy użyciu api "OpenWeather"
-        /// </summary>
-        public void getWeather()
+
+        private void getWeather()
         {
-            byte[] question = Encoding.UTF8.GetBytes("\r\n(Jeśli chcesz wyjść wpisz exit)\r\nPodaj lokalizację, aby sprawdzić warunki pogodowe: ");
+            byte[] question = Encoding.UTF8.GetBytes("\r\n(Jeśli chcesz wyjść wpisz exit)" +
+                                                    "\r\nPodaj lokalizację, aby sprawdzić warunki pogodowe: ");
             byte[] localization = new byte[64];
             while (true)
             {
-                stream.Write(question, 0, question.Length);
+                Stream.Write(question, 0, question.Length);
 
-                int localizationLength = stream.Read(localization, 0, 64);
+                int localizationLength = Stream.Read(localization, 0, 64);
                 byte[] trash = new byte[2];
-                stream.Read(trash, 0, 2);
+                Stream.Read(trash, 0, 2);
                 string city = Encoding.UTF8.GetString(localization, 0, localizationLength);
-                
-                if(city == "exit")
+
+                if (city == "exit")
                 {
                     byte[] bye = Encoding.UTF8.GetBytes("Rozłączono z serwerem");
-                    stream.Write(bye, 0, bye.Length);
+                    Stream.Write(bye, 0, bye.Length);
                     break;
                 }
 
@@ -86,16 +76,16 @@ namespace WeatherServerLibrary
                                                         cityWeather.wind.speed,
                                                         cityWeather.sys.country);
                     byte[] weather = Encoding.UTF8.GetBytes(outputValues);
-                    stream.Write(weather, 0, weather.Length);
+                    Stream.Write(weather, 0, weather.Length);
                     byte[] licence = Encoding.UTF8.GetBytes("Dane pochodzą z openweathermap.org");
-                    stream.Write(licence, 0 ,licence.Length);
+                    Stream.Write(licence, 0, licence.Length);
                     Console.WriteLine("Zwrócono poprawnie dane!");
                 }
                 catch (NullReferenceException e)
                 {
                     Console.WriteLine(e.Message);
                     byte[] error = Encoding.UTF8.GetBytes("Wpisano niepoprawną miejscowość!\r\n");
-                    stream.Write(error, 0, error.Length);
+                    Stream.Write(error, 0, error.Length);
                 }
             }
         }

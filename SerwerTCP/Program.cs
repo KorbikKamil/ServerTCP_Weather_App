@@ -1,4 +1,5 @@
-﻿using WeatherServerLibrary;
+﻿using System.Net;
+using WeatherServerLibrary;
 
 namespace SerwerTCP
 {
@@ -9,8 +10,8 @@ namespace SerwerTCP
     {
         static void Main(string[] args)
         {
-            Serwer serwer = new Serwer("127.0.0.1", 2048);
-            serwer.getWeather();
+            WeatherServer weatherServer = new WeatherServer(IPAddress.Parse("127.0.0.1"), 2048);
+            weatherServer.Start();
         }
     }
 }
