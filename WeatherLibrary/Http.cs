@@ -2,7 +2,7 @@
 using System.IO;
 using System.Net;
 
-namespace ServerClassLibrary
+namespace WeatherLibrary
 {
     /// <summary>
     /// Klasa służąca do łączenia z serwerem api.

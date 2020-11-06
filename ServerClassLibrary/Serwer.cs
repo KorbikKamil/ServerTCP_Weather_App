@@ -3,23 +3,23 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using Newtonsoft.Json;
+using WeatherLibrary;
 
-namespace ServerClassLibrary
+namespace WeatherServerLibrary
 {
     /// <summary>
     /// Klasa implementująca działanie serwera
     /// </summary>
-    public class Serwer
+    public class Serwer 
     {
         readonly IPAddress ipAdress;
         readonly int port;
-        byte[] buffer = new byte[1024];
-        byte[] welcome = Encoding.UTF8.GetBytes("Nastapiło poprawne połączenie\r\n");
         readonly TcpListener listener;
         readonly TcpClient client;
         readonly NetworkStream stream;
-        static readonly string apiKey = "YOUR_API_KEY";
-        
+
+        static readonly string apiKey = "Your_Api_Key"; //"Your_Api_Key"
+
 
         /// <summary>
         /// Konstruktor klasy Serwer
@@ -39,6 +39,7 @@ namespace ServerClassLibrary
             stream = client.GetStream();
 
             Console.WriteLine("Nastąpiło poprawne połączenie");
+            byte[] welcome = Encoding.UTF8.GetBytes("Nastapiło poprawne połączenie\r\n");
             stream.Write(welcome, 0, welcome.Length);
         }
         /// <summary>
@@ -93,7 +94,7 @@ namespace ServerClassLibrary
                 catch (NullReferenceException e)
                 {
                     Console.WriteLine(e.Message);
-                    byte[] error = Encoding.UTF8.GetBytes("Wpisano niepoprawną miejscowość!{0}\r\n");
+                    byte[] error = Encoding.UTF8.GetBytes("Wpisano niepoprawną miejscowość!\r\n");
                     stream.Write(error, 0, error.Length);
                 }
             }

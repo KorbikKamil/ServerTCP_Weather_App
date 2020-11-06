@@ -1,6 +1,6 @@
 ﻿
 
-namespace ServerClassLibrary
+namespace WeatherLibrary
 {
     /// <summary>
     /// Klasa opisująca koordynaty wpisanej przez użytkownika lokalizacji

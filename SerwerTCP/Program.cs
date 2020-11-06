@@ -1,4 +1,4 @@
-﻿using ServerClassLibrary;
+﻿using WeatherServerLibrary;
 
 namespace SerwerTCP
 {

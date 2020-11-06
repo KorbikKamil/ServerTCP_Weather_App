@@ -85,9 +85,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServerClassLibrary\ServerClassLibrary.csproj">
+    <ProjectReference Include="..\ServerClassLibrary\WeatherServerLibrary.csproj">
       <Project>{396274b7-62d1-4b6e-812a-a20542bd92a7}</Project>
-      <Name>ServerClassLibrary</Name>
+      <Name>WeatherServerLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
