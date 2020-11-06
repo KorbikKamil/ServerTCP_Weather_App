@@ -13,13 +13,13 @@ namespace WeatherServerLibrary
     public abstract class Server
     {
         #region Fields
-        protected IPAddress iPAddress;
-        protected int port;
-        protected int buffer_size = 1024;
-        protected bool running;
-        protected TcpListener tcpListener;
-        protected TcpClient tcpClient;
-        protected NetworkStream stream;
+        IPAddress iPAddress;
+        int port;
+        int buffer_size = 1024;
+        bool running;
+        TcpListener tcpListener;
+        TcpClient tcpClient;
+        NetworkStream stream;
         #endregion
 
 

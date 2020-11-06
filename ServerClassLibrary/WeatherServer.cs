@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using Newtonsoft.Json;
 using WeatherLibrary;
+using System.IO;
 
 namespace WeatherServerLibrary
 {
@@ -14,6 +15,8 @@ namespace WeatherServerLibrary
     {
 
         static readonly string apiKey = "a3f16ef88f8535836dffea2213656bf1";
+
+        public delegate void delegateGetWeather(NetworkStream stream);
 
         public WeatherServer(IPAddress IP, int port) : base(IP, port) { }
 
@@ -26,32 +29,43 @@ namespace WeatherServerLibrary
 
         protected override void AcceptClient()
         {
-            TcpClient = TcpListener.AcceptTcpClient();
-            Stream = TcpClient.GetStream();
-            Console.WriteLine("Nastąpiło poprawne połączenie");
-            byte[] welcome = Encoding.UTF8.GetBytes("Nastapiło poprawne połączenie\r\n");
-            Stream.Write(welcome, 0, welcome.Length);
-            getWeather();
+            while (true) 
+            { 
+                TcpClient = TcpListener.AcceptTcpClient();
+                Stream = TcpClient.GetStream();
+                Console.WriteLine("Nastąpiło poprawne połączenie");
+                byte[] welcome = Encoding.UTF8.GetBytes("Nastapiło poprawne połączenie\r\n");
+                Stream.Write(welcome, 0, welcome.Length);
+                delegateGetWeather getWeathers = new delegateGetWeather(getWeather);
+                getWeathers.BeginInvoke(Stream, getWeatherCallback, TcpClient);
+            }
         }
 
-        private void getWeather()
+        private void getWeatherCallback(IAsyncResult er)
+        {
+            TcpClient tcpClient = (TcpClient)er.AsyncState;
+            tcpClient.Close();
+            Console.WriteLine("Połączenie zostało zakończone!");
+        }
+
+        private void getWeather(NetworkStream stream)
         {
             byte[] question = Encoding.UTF8.GetBytes("\r\n(Jeśli chcesz wyjść wpisz exit)" +
                                                     "\r\nPodaj lokalizację, aby sprawdzić warunki pogodowe: ");
             byte[] localization = new byte[64];
             while (true)
             {
-                Stream.Write(question, 0, question.Length);
+                stream.Write(question, 0, question.Length);
 
-                int localizationLength = Stream.Read(localization, 0, 64);
+                int localizationLength = stream.Read(localization, 0, 64);
                 byte[] trash = new byte[2];
-                Stream.Read(trash, 0, 2);
+                stream.Read(trash, 0, 2);
                 string city = Encoding.UTF8.GetString(localization, 0, localizationLength);
 
                 if (city == "exit")
                 {
                     byte[] bye = Encoding.UTF8.GetBytes("Rozłączono z serwerem");
-                    Stream.Write(bye, 0, bye.Length);
+                    stream.Write(bye, 0, bye.Length);
                     break;
                 }
 
@@ -76,16 +90,16 @@ namespace WeatherServerLibrary
                                                         cityWeather.wind.speed,
                                                         cityWeather.sys.country);
                     byte[] weather = Encoding.UTF8.GetBytes(outputValues);
-                    Stream.Write(weather, 0, weather.Length);
+                    stream.Write(weather, 0, weather.Length);
                     byte[] licence = Encoding.UTF8.GetBytes("Dane pochodzą z openweathermap.org");
-                    Stream.Write(licence, 0, licence.Length);
+                    stream.Write(licence, 0, licence.Length);
                     Console.WriteLine("Zwrócono poprawnie dane!");
                 }
                 catch (NullReferenceException e)
                 {
                     Console.WriteLine(e.Message);
                     byte[] error = Encoding.UTF8.GetBytes("Wpisano niepoprawną miejscowość!\r\n");
-                    Stream.Write(error, 0, error.Length);
+                    stream.Write(error, 0, error.Length);
                 }
             }
         }
