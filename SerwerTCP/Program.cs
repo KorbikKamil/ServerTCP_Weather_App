@@ -10,8 +10,8 @@ namespace SerwerTCP
     {
         static void Main(string[] args)
         {
-            WeatherServer weatherServer = new WeatherServer(IPAddress.Parse("127.0.0.1"), 2048);
-            weatherServer.Start();
+            ClientHandler clientHandler = new ClientHandler(IPAddress.Parse("127.0.0.1"), 2048);
+            clientHandler.Start();
         }
     }
 }

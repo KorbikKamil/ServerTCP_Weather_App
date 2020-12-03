@@ -13,7 +13,7 @@ namespace WeatherLibrary
     /// <summary>
     /// Klasa zawierająca właściwości główne pogody
     /// </summary>
-    public class Main
+    public class WeatherMain
     {
         public double temp { get; set; }
         public int pressure { get; set; }
@@ -40,7 +40,7 @@ namespace WeatherLibrary
     {
         public Coord coord { get; set; }
     
-        public Main main { get; set; }
+        public WeatherMain main { get; set; }
     
         public Wind wind { get; set; }
     

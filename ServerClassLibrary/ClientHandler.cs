@@ -11,20 +11,16 @@ namespace WeatherServerLibrary
     /// <summary>
     /// Klasa implementująca działanie serwera
     /// </summary>
-    public class WeatherServer : Server
+    public class ClientHandler : Server
     {
-        /// <summary>
-        /// Klucz api jest nieaktualny. Jeśli chcesz użyć tej implementacji, wygeneruj swój klucz na stronie https://openweathermap.org/
-        /// </summary>
-        static readonly string apiKey = "a3f16ef88f8535836dffea2213656bf1";
-        public delegate void delegateGetWeather(NetworkStream stream);
+        public delegate void delegateHndlClient(NetworkStream stream);
 
         /// <summary>
         /// Inicjalizacja serwera
         /// </summary>
         /// <param name="IP">Adres IP serwera</param>
         /// <param name="port">Port serwera</param>
-        public WeatherServer(IPAddress IP, int port) : base(IP, port) { }
+        public ClientHandler(IPAddress IP, int port) : base(IP, port) { }
 
         /// <summary>
         /// Funkcja startująca serwer
@@ -48,8 +44,8 @@ namespace WeatherServerLibrary
                 Console.WriteLine("Nastąpiło poprawne połączenie");
                 byte[] welcome = Encoding.UTF8.GetBytes("Nastapiło poprawne połączenie\r\n");
                 Stream.Write(welcome, 0, welcome.Length);
-                delegateGetWeather getWeathers = new delegateGetWeather(getWeather);
-                getWeathers.BeginInvoke(Stream, getWeatherCallback, TcpClient);
+                delegateHndlClient HndlClient2 = new delegateHndlClient(handleClient);
+                HndlClient2.BeginInvoke(Stream, clientDisconnect, TcpClient);
             }
         }
 
@@ -57,18 +53,14 @@ namespace WeatherServerLibrary
         /// Zakończenie połączenia z klientem
         /// </summary>
         /// <param name="er">klient</param>
-        private void getWeatherCallback(IAsyncResult er)
+        private void clientDisconnect(IAsyncResult er)
         {
             TcpClient tcpClient = (TcpClient)er.AsyncState;
             tcpClient.Close();
             Console.WriteLine("Połączenie zostało zakończone!");
         }
 
-        /// <summary>
-        /// Funkcja zwracająca pogodę dla klienta
-        /// </summary>
-        /// <param name="stream">stream klienta</param>
-        private void getWeather(NetworkStream stream)
+        private void handleClient(NetworkStream stream)
         {
             byte[] question = Encoding.UTF8.GetBytes("\r\n(Jeśli chcesz wyjść wpisz exit)" +
                                                     "\r\nPodaj lokalizację, aby sprawdzić warunki pogodowe: ");
@@ -91,16 +83,13 @@ namespace WeatherServerLibrary
 
                 try
                 {
-                    string apiUrl = string.Format("http://api.openweathermap.org/data/2.5/weather?q={0}&units=metric&appid={1}", city, apiKey);
-                    string content = Http.Get(apiUrl);
-
-                    ApiObj cityWeather = JsonConvert.DeserializeObject<ApiObj>(content);
+                    ApiObj cityWeather = WeatherGetter.getWeather(city);
 
                     string outputValues = string.Format("\r\nKoordynaty miejscowośći: lon {0}  lat {1}" +
                                                         "\r\nTemperatura: {2}°C" +
-                                                        "\r\nCiśnienie: {3}hPa" +
+                                                        "\r\nCiśnienie: {3} hPa" +
                                                         "\r\nWilgotność: {4}%" +
-                                                        "\r\nPrędkość wiatru: {5}km/h" +
+                                                        "\r\nPrędkość wiatru: {5} km/h" +
                                                         "\r\nKraj: {6}\r\n",
                                                         cityWeather.coord.lon,
                                                         cityWeather.coord.lat,
