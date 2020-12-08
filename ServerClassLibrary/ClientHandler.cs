@@ -70,9 +70,10 @@ namespace WeatherServerLibrary
                 stream.Write(question, 0, question.Length);
 
                 int localizationLength = stream.Read(localization, 0, 64);
-                byte[] trash = new byte[2];
-                stream.Read(trash, 0, 2);
+                //byte[] trash = new byte[2];
+                //stream.Read(trash, 0, 2);
                 string city = Encoding.UTF8.GetString(localization, 0, localizationLength);
+                Console.Write(city);
 
                 if (city == "exit")
                 {

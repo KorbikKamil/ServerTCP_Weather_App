@@ -16,7 +16,7 @@ namespace WeatherServerLibrary
         /// <summary>
         /// Klucz api jest nieaktualny. Jeśli chcesz użyć tej implementacji, wygeneruj swój klucz na stronie https://openweathermap.org/
         /// </summary>
-        static readonly string apiKey = "ffffffffffffffffffffffffffffffff";
+        static readonly string apiKey = "6f38b94da39ee0d549b62f621b012f80";
 
         /// <summary>
         /// Funkcja zwracająca pogodę dla klienta
