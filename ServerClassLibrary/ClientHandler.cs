@@ -86,12 +86,7 @@ namespace WeatherServerLibrary
                 {
                     ApiObj cityWeather = WeatherGetter.getWeather(city);
 
-                    string outputValues = string.Format("\r\nKoordynaty miejscowośći: lon {0}  lat {1}" +
-                                                        "\r\nTemperatura: {2}°C" +
-                                                        "\r\nCiśnienie: {3} hPa" +
-                                                        "\r\nWilgotność: {4}%" +
-                                                        "\r\nPrędkość wiatru: {5} km/h" +
-                                                        "\r\nKraj: {6}\r\n",
+                    string outputValues = string.Format("{0},{1},{2},{3},{4},{5},{6}",                               
                                                         cityWeather.coord.lon,
                                                         cityWeather.coord.lat,
                                                         cityWeather.main.temp,
