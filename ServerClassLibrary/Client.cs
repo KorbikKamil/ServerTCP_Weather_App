@@ -21,31 +21,19 @@ namespace WeatherServerLibrary
             byte[] binMsg = Encoding.UTF8.GetBytes(msg);
             ns.Write(binMsg, 0, binMsg.Length);
         }
-        public int Start(string hostName, int portNum)
+        public void Start(string hostName, int portNum)
         {
             this.portNum = portNum;
             this.hostName = hostName;
             try
             {
                 var client = new TcpClient(hostName, portNum);
-
                 ns = client.GetStream();
-
-                while (true)
-                {
-                    string city = Console.ReadLine();
-                    Send(city);
-                    Console.Write(Read());
-                }
-                //client.Close();
-
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
-
-            return 0;
         }
     }
 }
