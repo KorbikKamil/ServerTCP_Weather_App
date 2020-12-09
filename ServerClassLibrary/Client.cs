@@ -33,9 +33,6 @@ namespace WeatherServerLibrary
 
                 while (true)
                 {
-                    Console.Write(Read());
-                    Console.Write(Read());
-
                     string city = Console.ReadLine();
                     Send(city);
                     Console.Write(Read());
