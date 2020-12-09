@@ -86,7 +86,7 @@ namespace WeatherServerLibrary
                 {
                     ApiObj cityWeather = WeatherGetter.getWeather(city);
 
-                    string outputValues = string.Format("{0},{1},{2},{3},{4},{5},{6}",                               
+                    string outputValues = string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}",                               
                                                         cityWeather.coord.lon,
                                                         cityWeather.coord.lat,
                                                         cityWeather.main.temp,
