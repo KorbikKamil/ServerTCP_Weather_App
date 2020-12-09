@@ -39,6 +39,7 @@
             this.wiatr = new System.Windows.Forms.Label();
             this.kraj = new System.Windows.Forms.Label();
             this.dane = new System.Windows.Forms.Label();
+            this.blad = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -53,7 +54,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(276, 135);
+            this.button1.Location = new System.Drawing.Point(273, 126);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(119, 23);
             this.button1.TabIndex = 1;
@@ -148,11 +149,24 @@
             this.dane.TabIndex = 10;
             this.dane.Text = "DANE POCHODZĄ Z: openweathermap.org";
             // 
+            // blad
+            // 
+            this.blad.AutoSize = true;
+            this.blad.BackColor = System.Drawing.Color.Red;
+            this.blad.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.blad.Location = new System.Drawing.Point(155, 161);
+            this.blad.Name = "blad";
+            this.blad.Size = new System.Drawing.Size(353, 29);
+            this.blad.TabIndex = 11;
+            this.blad.Text = "Podano niepoprawne miejsce!";
+            this.blad.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(678, 532);
+            this.Controls.Add(this.blad);
             this.Controls.Add(this.dane);
             this.Controls.Add(this.kraj);
             this.Controls.Add(this.wiatr);
@@ -185,6 +199,7 @@
         private System.Windows.Forms.Label wiatr;
         private System.Windows.Forms.Label kraj;
         private System.Windows.Forms.Label dane;
+        private System.Windows.Forms.Label blad;
     }
 }
 

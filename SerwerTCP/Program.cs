@@ -22,7 +22,8 @@ namespace SerwerTCP
             }
             else if (option == 1)
             {
-                //uruchamiamy klienta
+                Client client = new Client();
+                client.Start("127.0.0.1", 2048);
             }
             else {
                 Console.WriteLine("Nie ma takiej opcji!");
