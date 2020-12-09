@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WeatherServerLibrary;
 
 namespace GUIClient
 {
@@ -15,6 +16,9 @@ namespace GUIClient
         public Form1()
         {
             InitializeComponent();
+
+            Client client = new Client();
+            client.Start("127.0.0.1", 2048);
         }
 
         private void button1_Click(object sender, EventArgs e)
