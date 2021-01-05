@@ -38,10 +38,25 @@ namespace GUIClient
                 wilgotnosc.Text = "Wilgotność: " + data[4] + "%";
                 wiatr.Text = "Prędkość wiatru: " + data[5] + "km/h";
                 kraj.Text = "Kraj: " + data[6];
+
+                StringBuilder mapLoc = new StringBuilder("https://www.openstreetmap.org/");
+                //https://www.openstreetmap.org/?&mlat=52&mlon=18#map=12/51.9530/17.9350
+                mapLoc.Append("?&mlat=" + data[1] + "&mlon=" + data[0] + "#map=12/" + data[1] + "/" + data[0]);
+                //mapLoc.Append(data[1] + "/" + data[0]);
+                mapLoc.Replace(",", ".");
+
+                mapa.Navigate(mapLoc.ToString());
             } catch (Exception ex)
             {
                 blad.Visible = true;
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            StringBuilder mapLoc = new StringBuilder("https://www.openstreetmap.org/?#map=12/0/0");
+
+            mapa.Navigate(mapLoc.ToString());
         }
     }
 }
