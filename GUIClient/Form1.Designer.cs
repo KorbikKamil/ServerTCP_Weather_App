@@ -40,23 +40,26 @@
             this.kraj = new System.Windows.Forms.Label();
             this.dane = new System.Windows.Forms.Label();
             this.blad = new System.Windows.Forms.Label();
+            this.mapa = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(30, 9);
+            this.label1.Location = new System.Drawing.Point(22, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(563, 38);
+            this.label1.Size = new System.Drawing.Size(468, 31);
             this.label1.TabIndex = 0;
             this.label1.Text = "SPRAWDŹ POGODĘ NA ŚWIECIE";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(273, 126);
+            this.button1.Location = new System.Drawing.Point(501, 58);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 23);
+            this.button1.Size = new System.Drawing.Size(89, 19);
             this.button1.TabIndex = 1;
             this.button1.Text = "SPRAWDŹ";
             this.button1.UseVisualStyleBackColor = true;
@@ -66,26 +69,29 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(37, 84);
+            this.label2.Location = new System.Drawing.Point(25, 57);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 20);
+            this.label2.Size = new System.Drawing.Size(93, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "Podaj miasto:";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(177, 84);
+            this.textBox1.Location = new System.Drawing.Point(133, 57);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(464, 22);
+            this.textBox1.Size = new System.Drawing.Size(349, 20);
             this.textBox1.TabIndex = 3;
             // 
             // koordynaty
             // 
             this.koordynaty.AutoSize = true;
             this.koordynaty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.koordynaty.Location = new System.Drawing.Point(18, 202);
+            this.koordynaty.Location = new System.Drawing.Point(11, 129);
+            this.koordynaty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.koordynaty.Name = "koordynaty";
-            this.koordynaty.Size = new System.Drawing.Size(203, 20);
+            this.koordynaty.Size = new System.Drawing.Size(169, 17);
             this.koordynaty.TabIndex = 4;
             this.koordynaty.Text = "Koordynaty miejscowości:";
             // 
@@ -93,9 +99,10 @@
             // 
             this.temperatura.AutoSize = true;
             this.temperatura.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.temperatura.Location = new System.Drawing.Point(14, 246);
+            this.temperatura.Location = new System.Drawing.Point(14, 167);
+            this.temperatura.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.temperatura.Name = "temperatura";
-            this.temperatura.Size = new System.Drawing.Size(109, 20);
+            this.temperatura.Size = new System.Drawing.Size(94, 17);
             this.temperatura.TabIndex = 5;
             this.temperatura.Text = "Temperatura:";
             // 
@@ -103,9 +110,10 @@
             // 
             this.cisnienie.AutoSize = true;
             this.cisnienie.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.cisnienie.Location = new System.Drawing.Point(18, 293);
+            this.cisnienie.Location = new System.Drawing.Point(14, 203);
+            this.cisnienie.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.cisnienie.Name = "cisnienie";
-            this.cisnienie.Size = new System.Drawing.Size(83, 20);
+            this.cisnienie.Size = new System.Drawing.Size(69, 17);
             this.cisnienie.TabIndex = 6;
             this.cisnienie.Text = "Ciśnienie:";
             // 
@@ -113,9 +121,10 @@
             // 
             this.wilgotnosc.AutoSize = true;
             this.wilgotnosc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.wilgotnosc.Location = new System.Drawing.Point(14, 345);
+            this.wilgotnosc.Location = new System.Drawing.Point(14, 242);
+            this.wilgotnosc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.wilgotnosc.Name = "wilgotnosc";
-            this.wilgotnosc.Size = new System.Drawing.Size(97, 20);
+            this.wilgotnosc.Size = new System.Drawing.Size(81, 17);
             this.wilgotnosc.TabIndex = 7;
             this.wilgotnosc.Text = "Wilgotność:";
             // 
@@ -123,9 +132,10 @@
             // 
             this.wiatr.AutoSize = true;
             this.wiatr.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.wiatr.Location = new System.Drawing.Point(14, 394);
+            this.wiatr.Location = new System.Drawing.Point(11, 275);
+            this.wiatr.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.wiatr.Name = "wiatr";
-            this.wiatr.Size = new System.Drawing.Size(134, 20);
+            this.wiatr.Size = new System.Drawing.Size(112, 17);
             this.wiatr.TabIndex = 8;
             this.wiatr.Text = "Prędkość wiatru:";
             // 
@@ -133,9 +143,10 @@
             // 
             this.kraj.AutoSize = true;
             this.kraj.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.kraj.Location = new System.Drawing.Point(18, 439);
+            this.kraj.Location = new System.Drawing.Point(14, 309);
+            this.kraj.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.kraj.Name = "kraj";
-            this.kraj.Size = new System.Drawing.Size(44, 20);
+            this.kraj.Size = new System.Drawing.Size(37, 17);
             this.kraj.TabIndex = 9;
             this.kraj.Text = "Kraj:";
             // 
@@ -143,9 +154,10 @@
             // 
             this.dane.AutoSize = true;
             this.dane.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dane.Location = new System.Drawing.Point(173, 503);
+            this.dane.Location = new System.Drawing.Point(130, 409);
+            this.dane.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.dane.Name = "dane";
-            this.dane.Size = new System.Drawing.Size(335, 20);
+            this.dane.Size = new System.Drawing.Size(283, 17);
             this.dane.TabIndex = 10;
             this.dane.Text = "DANE POCHODZĄ Z: openweathermap.org";
             // 
@@ -154,18 +166,28 @@
             this.blad.AutoSize = true;
             this.blad.BackColor = System.Drawing.Color.Red;
             this.blad.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.blad.Location = new System.Drawing.Point(155, 161);
+            this.blad.Location = new System.Drawing.Point(23, 93);
+            this.blad.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.blad.Name = "blad";
-            this.blad.Size = new System.Drawing.Size(353, 29);
+            this.blad.Size = new System.Drawing.Size(274, 25);
             this.blad.TabIndex = 11;
             this.blad.Text = "Podano niepoprawne miejsce!";
             this.blad.Visible = false;
             // 
+            // mapa
+            // 
+            this.mapa.Location = new System.Drawing.Point(319, 93);
+            this.mapa.MinimumSize = new System.Drawing.Size(20, 20);
+            this.mapa.Name = "mapa";
+            this.mapa.Size = new System.Drawing.Size(423, 313);
+            this.mapa.TabIndex = 12;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(678, 532);
+            this.ClientSize = new System.Drawing.Size(764, 432);
+            this.Controls.Add(this.mapa);
             this.Controls.Add(this.blad);
             this.Controls.Add(this.dane);
             this.Controls.Add(this.kraj);
@@ -179,8 +201,10 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Aplikacja Pogodowa";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,6 +224,7 @@
         private System.Windows.Forms.Label kraj;
         private System.Windows.Forms.Label dane;
         private System.Windows.Forms.Label blad;
+        private System.Windows.Forms.WebBrowser mapa;
     }
 }
 
