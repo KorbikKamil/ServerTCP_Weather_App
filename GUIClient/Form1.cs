@@ -25,11 +25,15 @@ namespace GUIClient
         {
             blad.Visible = false;
             string city = textBox1.Text;
-            client.Send(city);
-            string[] data;
-            string recivedString;
             try
             {
+                if (city == "") {
+                    throw new Exception();
+                }
+                client.Send(city);
+                string[] data;
+             string recivedString;
+        
                 recivedString = client.Read();
                 data = recivedString.Split('|');
                 koordynaty.Text = "Koordynaty miejscowości: lon:" + data[0] + " lat:" + data[1];
@@ -57,6 +61,16 @@ namespace GUIClient
             StringBuilder mapLoc = new StringBuilder("https://www.openstreetmap.org/?#map=12/0/0");
 
             mapa.Navigate(mapLoc.ToString());
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dane_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
