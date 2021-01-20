@@ -19,7 +19,8 @@ namespace GUIClient
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            DesktopNotificationManagerCompat.RegisterAumidAndComServer<NotificationHandler>("Twoja Pogodynka");
+            /*
+             * DesktopNotificationManagerCompat.RegisterAumidAndComServer<NotificationHandler>("Twoja Pogodynka");
             DesktopNotificationManagerCompat.RegisterActivator<NotificationHandler>();
             ToastContent toastContent = new ToastContentBuilder()
                 .AddToastActivationInfo("", ToastActivationType.Background)
@@ -31,6 +32,7 @@ namespace GUIClient
 
             // And then show it
             DesktopNotificationManagerCompat.CreateToastNotifier().Show(toast);
+            */
 
             Application.Run(new Form1());
         }
