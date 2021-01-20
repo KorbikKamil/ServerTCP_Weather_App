@@ -205,6 +205,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "0",
@@ -215,9 +216,9 @@
             "120"});
             this.comboBox1.Location = new System.Drawing.Point(16, 444);
             this.comboBox1.Name = "comboBox1";
+            this.comboBox1.SelectedItem = "15";
             this.comboBox1.Size = new System.Drawing.Size(73, 28);
             this.comboBox1.TabIndex = 14;
-            this.comboBox1.Text = "15";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // setNotification
@@ -245,7 +246,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(15, 479);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 20);
+            this.label4.Size = new System.Drawing.Size(193, 20);
             this.label4.TabIndex = 18;
             this.label4.Text = "Powiadomienie wyłaczone";
             this.label4.Click += new System.EventHandler(this.label4_Click);
