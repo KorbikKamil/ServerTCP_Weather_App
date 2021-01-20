@@ -18,22 +18,6 @@ namespace GUIClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            /*
-             * DesktopNotificationManagerCompat.RegisterAumidAndComServer<NotificationHandler>("Twoja Pogodynka");
-            DesktopNotificationManagerCompat.RegisterActivator<NotificationHandler>();
-            ToastContent toastContent = new ToastContentBuilder()
-                .AddToastActivationInfo("", ToastActivationType.Background)
-                .AddText("Pogoda dla: Konin 26C Słonecznie")
-                .GetToastContent();
-
-            // And create the toast notification
-            var toast = new ToastNotification(toastContent.GetXml());
-
-            // And then show it
-            DesktopNotificationManagerCompat.CreateToastNotifier().Show(toast);
-            */
-
             Application.Run(new Form1());
         }
     }
